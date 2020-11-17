@@ -32,7 +32,6 @@ public class BeerOrderManagerImpl implements BeerOrderManager {
     private final StateMachineFactory<BeerOrderStatusEnum, BeerOrderEventEnum> stateMachineFactory;
     private final BeerOrderRepository beerOrderRepository;
     private final BeerOrderStateChangeInterceptor stateChangeInterceptor;
-    private final EntityManager entityManager;
 
     @Transactional
     @Override
@@ -50,8 +49,6 @@ public class BeerOrderManagerImpl implements BeerOrderManager {
     @Override
     public void processValidationResult(UUID beerOrderId, Boolean isValid) {
         log.debug("Process validation result for beer order id: " + beerOrderId + ", is valid: " + isValid);
-
-        entityManager.flush();
 
         Optional<BeerOrder> beerOrderOptional = beerOrderRepository.findById(beerOrderId);
 
