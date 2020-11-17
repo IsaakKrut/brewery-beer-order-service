@@ -22,7 +22,6 @@ public class BeerOrderValidationListener {
 
         ValidateOrderRequest request = (ValidateOrderRequest) message.getPayload();
 
-        System.out.println("################ I RAN ########");
         jmsTemplate.convertAndSend(JmsConfig.VALIDATE_ORDER_RESPONSE_QUEUE,
                 ValidateOrderResult.builder()
                 .isValid(true)

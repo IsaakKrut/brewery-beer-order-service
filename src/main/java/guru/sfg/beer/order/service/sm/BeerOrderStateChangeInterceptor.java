@@ -37,9 +37,6 @@ public class BeerOrderStateChangeInterceptor extends StateMachineInterceptorAdap
                         .getOrDefault(BeerOrderManagerImpl.ORDER_ID_HEADER, "")))
                 .ifPresent(orderId->{
                     log.debug("Saving state for order id: " + orderId + " status: " + state.getId());
-                    if (state.getId() == BeerOrderStatusEnum.ALLOCATION_PENDING){
-                        log.debug("Allocation Pending");
-                    }
 
                     BeerOrder beerOrder = beerOrderRepository.getOne(UUID.fromString(orderId));
                     beerOrder.setOrderStatus(state.getId());
